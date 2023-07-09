@@ -1,0 +1,16 @@
+{
+    "logging": {
+        "log_level": 20,
+        "gotify": {
+            "app_token": "",
+            "server_url": ""
+        }
+    },
+    "auth_info": {
+        "client_id": "",
+        "client_secret": "",
+        "username": "",
+        "password": "",
+        "user_agent": "mail_alerter"
+    }
+}
