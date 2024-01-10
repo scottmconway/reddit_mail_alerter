@@ -5,6 +5,7 @@ import json
 import logging
 
 import praw
+from praw.models import Message
 
 APP_NAME = "reddit_mail_alerter"
 
@@ -20,7 +21,7 @@ def main():
     parser.add_argument(
         "--avoid-marking-read",
         action="store_true",
-        help="If set, do not mark messages as read after alerting on them"
+        help="If set, do not mark messages as read after alerting on them",
     )
     args = parser.parse_args()
 
@@ -45,9 +46,17 @@ def main():
         reddit = praw.Reddit(**reddit_auth_info)
 
         for message in reddit.inbox.unread():
-            in_reply_to = (
-                f'In reply to "{message.parent.subject}"\n' if message.parent else ""
-            )
+            in_reply_to = ""
+
+            # for Message, parent is another Message
+            # for Comment (and possibly others?), it's a function
+            if type(message) == Message:
+                in_reply_to = (
+                    f'In reply to "{message.parent.subject}"\n'
+                    if message.parent
+                    else ""
+                )
+
             msg = f"Sender: {message.author.name}\nSubject: {message.subject}\n{in_reply_to}\n{message.body}"
             logger.info(msg)
 
