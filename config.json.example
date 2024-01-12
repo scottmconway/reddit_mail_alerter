@@ -1,9 +1,19 @@
 {
     "logging": {
-        "log_level": 20,
-        "gotify": {
-            "app_token": "",
-            "server_url": ""
+        "version": 1,
+        "handlers": {
+            "gotifyHandler": {
+                "class": "gotify_handler.GotifyHandler",
+                "level": "INFO",
+                "app_token": "",
+                "server_url": "https://gotify.example.com"
+            }
+        },
+        "loggers": {
+            "reddit_mail_alerter": {
+                "handlers": ["gotifyHandler"],
+                "level": "INFO"
+            }
         }
     },
     "auth_info": {

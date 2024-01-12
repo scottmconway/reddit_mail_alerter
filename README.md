@@ -1,5 +1,5 @@
 # Reddit Mail Alerter
-A simple script to run as a cronjob to log unread reddit messages to Gotify (or other logging handlers)
+A simple script to run as a cronjob to log unread reddit messages to any number of logging handlers
 
 ## Requirements
 * python3

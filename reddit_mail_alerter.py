@@ -3,6 +3,7 @@
 import argparse
 import json
 import logging
+import logging.config
 
 import praw
 from praw.models import Message
@@ -29,13 +30,8 @@ def main():
         config = json.load(f)
 
     # logging setup
+    logging.config.dictConfig(config.get("logging", {"version": 1}))
     logger = logging.getLogger(APP_NAME)
-    logging_conf = config.get("logging", dict())
-    logger.setLevel(logging_conf.get("log_level", logging.INFO))
-    if "gotify" in logging_conf:
-        from gotify_handler import GotifyHandler
-
-        logger.addHandler(GotifyHandler(**logging_conf["gotify"]))
 
     reddit_auth_info = config.get("auth_info", dict())
     if "user_agent" not in reddit_auth_info:
