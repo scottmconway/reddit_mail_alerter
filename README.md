@@ -11,6 +11,13 @@ A simple script to run as a cronjob to log unread reddit messages to any number 
 * Configure logging as you wish
 * Simply run `./reddit_mail_alerter.py`
 
+### 2026 Addendum
+Reddit sucks. They have killed the above simple workflow. The Devvit app workflow does not create applications with the type `script`, so they cannot be used with this program.
+
+To attempt to make a script app now, you have to beg for one to be created for you by filling out [this form](https://support.reddithelp.com/hc/en-us/requests/new?ticket_form_id=14868593862164&tf_14867328473236=api_request_type_research).
+
+Then maybe if you're approved you can plug in your credentials and use this program as intended.
+
 ## Configuration Setup
 See `config.json.example` for an example configuration file.
 
